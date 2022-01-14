@@ -77,10 +77,8 @@
                         }
                        
                         function generateXY(xValue, yValue) {
-                        
-                            let returnArray = [];
-                        
-                            for (let i = 1; i <= 100; i++) {
+                                let returnArray = [];
+                                for (let i = 1; i <= 100; i++) {
                         
                                 let value = ((i % xValue == 0 ? 'X' : '') + (i % yValue == 0 ? 'Y' : '') || i);
                                 returnArray.push(value);
@@ -136,9 +134,7 @@
                                     }
                                 }
                             }
-                        
                             return returnArray;
-                        
                         }*/
                                              
                         //Loop over array and create a tablerow for each item
@@ -170,11 +166,7 @@
                         
                                 tableBody.appendChild(tableRow);
                             }
-                        
-                        
-                        
                             //Add all the rows  to the table.
-                        
                         }
                         </code>
                     </pre>
@@ -183,18 +175,15 @@
                     <p>The Code is structured in three function.</p>
                     <div>
                         <h5>function getValues()</h5>
-                        <p>This function retrieves the values from the HTML page. It then varifies that they are numbers
-                            and not arrays. Once confirmed, the numbers are then passed to the next function.</p>
+                        <p>This function retrieves the values from the HTML page. It then turns the strings to integers then passes tehm on to the next function.</p>
                     </div>
                     <div>
-                        <h5>function generateNumbers()</h5>
-                        <p>This function runs a loop and places the numbers in an array. The array is then used in the
-                            following function.</p>
+                        <h5>function generateXY()</h5>
+                        <p>This function runs a loop and places the numbers in an array. The fuction replaces the numbers that are divisible by the input values with an 'X' or 'Y'. If divisible by both, it is replaced with 'XY'. An array is returned.</p>
                     </div>
                     <div>
-                        <h5>function displayNumbers()</h5>
-                        <p>This function inputs the array into a table which is printed on the HTML page. The function
-                            also bolds all of the even numbers.</p>
+                        <h5>function displayData()</h5>
+                        <p>This function uses an html template in the page to print the results to the page in the desired format. It also gives a class to 'X', 'Y', and 'XY' for further CSS styling.</p>
                     </div>
                 </div>
             </div>

@@ -1,65 +1,120 @@
-//get the values from the UI
-//starts our controller function
-function getValues() {
-    //get values from page
-    let startValue = document.getElementById("startValue").value;
-    let endValue = document.getElementById("endValue").value;
-
-    //parse into Integers
-    startValue = parseInt(startValue);
-    endValue = parseInt(endValue);
-
-    if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
-
-        //call generate numbers
-        numbers = generateNumbers(startValue, endValue);
-
-        //call display numbers
-        displayNumbers(numbers);
-
+//Get values from page
+function getValue() {
+    //Get user values
+    let firstValue = document.getElementById("firstValue").value;
+    let secondValue = document.getElementById("secondValue").value;
+    //Parse the numbers
+    firstValue = parseInt(firstValue);
+    secondValue = parseInt(secondValue);
+    //Check that the numbers are integers
+    if (Number.isInteger(firstValue) && Number.isInteger(secondValue)) {
+        numbers = generateXY(firstValue, secondValue);
+        //We call generateXY
+        let xyArray = generateXY(firstValue, secondValue);
+        //Call displayData and write the values to the screen
+        displayData(xyArray);
     } else {
         alert("You must enter integers");
     }
 }
 
-//generate numbers from the start value to the end value
-//logic function(s)
-function generateNumbers(sValue, eValue) {
+//Generate numbers
+/*function generateXY(xValue, yValue) {
+    //Initialize and return array
+    let returnArray = [];
+    //loop from 1-100 with if statements
+    for (let i = 1; i <= 100; i++) {
+        if (i % xValue == 0 && i % yValue == 0) {
+            returnArray.push('XY');
+        } else if (i % xValue == 0) {
+            returnArray.push('X');
+        } else if (i % yValue == 0) {
+            returnArray.push('Y');
+        } else {
+            returnArray.push(i);
+        }
+    }
+    return returnArray;
+}*/
 
-    let numbers = [];
+/*function generateXY(xValue, yValue) {
 
-    //we want to get all numbers from start to end
-    for (let index = sValue; index <= eValue; index++) {
+    let returnArray = [];
+    let X = false;
+    let Y = false;
 
-        //this will execute in a loop until index = eValue
-        numbers.push(index);
+    for (let i = 1; i < 100; i++) {
+        X = i % xValue == 0;
+        Y = i % yValue == 0;
+
+        switch (true) {
+            case X && Y: {
+                returnArray.push('XY');
+                break;
+            }
+            case X:{
+                returnArray.push('X');
+                break;
+            }
+            case Y:{
+                returnArray.push('Y');
+                break;
+            }
+            default:{
+                returnArray.push('i');
+                break;
+            }
+        }
     }
 
-    return numbers;
+    return returnArray;
 
+}*/
+
+function generateXY(xValue, yValue) {
+
+    let returnArray = [];
+
+    for (let i = 1; i <= 100; i++) {
+
+        let value = ((i % xValue == 0 ? 'X' : '') + (i % yValue == 0 ? 'Y' : '') || i);
+        returnArray.push(value);
+    }
+    return returnArray;
 }
 
-//display numbers and mark even numbers bold
-//display or view functions
-function displayNumbers(numbers) {
+//Loop over array and create a tablerow for each item
+function displayData(xyArray) {
+    let tableBody = document.getElementById("results");
+    //Get the template
+    let templateRow = document.getElementById("xyTemplate");
+    //Clear the table
+    tableBody.innerHTML = "";
+    for (let index = 0; index < xyArray.length; index += 5) {
+        let tableRow = document.importNode(templateRow.content, true);
+        //Grab the 'td' and put into an array
+        let rowCols = tableRow.querySelectorAll("td");
 
-    let templateRows = "";
+        rowCols[0].classList.add(xyArray[index]);
+        rowCols[0].textContent = xyArray[index];
 
-    for (let index = 0; index < numbers.length; index++) {
+        rowCols[1].classList.add(xyArray[index + 1]);
+        rowCols[1].textContent = xyArray[index + 1];
 
-        let className = "even";
-        let number = numbers[index];
+        rowCols[2].classList.add(xyArray[index + 2]);
+        rowCols[2].textContent = xyArray[index + 2];
 
-        if (number % 2 == 0) {
-            className = "even";
-        } else {
-            className = "odd";
-        }
-        
-        //This does render correctly with Prism see the source
-        templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+        rowCols[3].classList.add(xyArray[index + 3]);
+        rowCols[3].textContent = xyArray[index + 3];
+
+        rowCols[4].classList.add(xyArray[index + 4]);
+        rowCols[4].textContent = xyArray[index + 4];
+
+        tableBody.appendChild(tableRow);
     }
 
-    document.getElementById("results").innerHTML = templateRows;
+
+
+    //Add all the rows  to the table.
 
 }

@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>THE APP: A Coding Project By Riley MacNeill</title>
+    <title>MATH: A Coding Project By Riley MacNeill</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,10 +14,6 @@
     <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="/img/favicon-32x32.png" <!-- Convert this to an external style sheet -->
     <link href="/css/prism.css" rel="stylesheet">
-    <!--Black Ops One-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -26,7 +22,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand logoFont" href="#"><img src="/img/favicon-32x32.png" height="24" width="30"
-                    class="d-inline-block align-text-top">&nbsp;THE APP</a>
+                    class="d-inline-block align-text-top">&nbsp;MATH</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -60,70 +56,126 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        //get the values from the UI
-//starts our controller function
-function getValues() {
-    //get values from page
-    let startValue = document.getElementById("startValue").value;
-    let endValue = document.getElementById("endValue").value;
+                        //Get values from page
+                        function getValue() {
+                            //Get user values
+                            let firstValue = document.getElementById("firstValue").value;
+                            let secondValue = document.getElementById("secondValue").value;
+                            //Parse the numbers
+                            firstValue = parseInt(firstValue);
+                            secondValue = parseInt(secondValue);
+                            //Check that the numbers are integers
+                            if (Number.isInteger(firstValue) && Number.isInteger(secondValue)) {
+                                numbers = generateXY(firstValue, secondValue);
+                                //We call generateXY
+                                let xyArray = generateXY(firstValue, secondValue);
+                                //Call displayData and write the values to the screen
+                                displayData(xyArray);
+                            } else {
+                                alert("You must enter integers");
+                            }
+                        }
+                       
+                        function generateXY(xValue, yValue) {
+                        
+                            let returnArray = [];
+                        
+                            for (let i = 1; i <= 100; i++) {
+                        
+                                let value = ((i % xValue == 0 ? 'X' : '') + (i % yValue == 0 ? 'Y' : '') || i);
+                                returnArray.push(value);
+                            }
+                            return returnArray;
+                        }
 
-    //parse into Integers
-    startValue = parseInt(startValue);
-    endValue = parseInt(endValue);
-
-    if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
-
-        //call generate numbers
-        numbers = generateNumbers(startValue, endValue);
-
-        //call display numbers
-        displayNumbers(numbers);
-
-    } else {
-        alert("You must enter integers");
-    }
-}
-
-//generate numbers from the start value to the end value
-//logic function(s)
-function generateNumbers(sValue, eValue) {
-
-    let numbers = [];
-
-    //we want to get all numbers from start to end
-    for (let index = sValue; index <= eValue; index++) {
-
-        //this will execute in a loop until index = eValue
-        numbers.push(index);
-    }
-
-    return numbers;
-
-}
-
-//display numbers and mark even numbers bold
-//display or view functions
-function displayNumbers(numbers) {
-
-    let templateRows = "";
-
-    for (let index = 0; index < numbers.length; index++) {
-
-        let className = "even";
-        let number = numbers[index];
-
-        if (number % 2 == 0) {
-            className = "even";
-        } else {
-            className = "odd";
-        }
-        //This does render correctly with Prism see the source
-        templateRows += `<tr><td class="${className}">${number}</td></tr>`;
-    }
-
-    document.getElementById("results").innerHTML = templateRows;
-
-}
+                        //Generate numbers
+                        /*function generateXYB(xValue, yValue) {
+                            //Initialize and return array
+                            let returnArray = [];
+                            //loop from 1-100 with if statements
+                            for (let i = 1; i <= 100; i++) {
+                                if (i % xValue == 0 && i % yValue == 0) {
+                                    returnArray.push('XY');
+                                } else if (i % xValue == 0) {
+                                    returnArray.push('X');
+                                } else if (i % yValue == 0) {
+                                    returnArray.push('Y');
+                                } else {
+                                    returnArray.push(i);
+                                }
+                            }
+                            return returnArray;
+                        }*/
+                        
+                        /*function generateXYC(xValue, yValue) {
+                        
+                            let returnArray = [];
+                            let X = false;
+                            let Y = false;
+                        
+                            for (let i = 1; i < 100; i++) {
+                                X = i % xValue == 0;
+                                Y = i % yValue == 0;
+                        
+                                switch (true) {
+                                    case X && Y: {
+                                        returnArray.push('XY');
+                                        break;
+                                    }
+                                    case X:{
+                                        returnArray.push('X');
+                                        break;
+                                    }
+                                    case Y:{
+                                        returnArray.push('Y');
+                                        break;
+                                    }
+                                    default:{
+                                        returnArray.push('i');
+                                        break;
+                                    }
+                                }
+                            }
+                        
+                            return returnArray;
+                        
+                        }*/
+                                             
+                        //Loop over array and create a tablerow for each item
+                        function displayData(xyArray) {
+                            let tableBody = document.getElementById("results");
+                            //Get the template
+                            let templateRow = document.getElementById("xyTemplate");
+                            //Clear the table
+                            tableBody.innerHTML = "";
+                            for (let index = 0; index < xyArray.length; index += 5) {
+                                let tableRow = document.importNode(templateRow.content, true);
+                                //Grab the 'td' and put into an array
+                                let rowCols = tableRow.querySelectorAll("td");
+                        
+                                rowCols[0].classList.add(xyArray[index]);
+                                rowCols[0].textContent = xyArray[index];
+                        
+                                rowCols[1].classList.add(xyArray[index + 1]);
+                                rowCols[1].textContent = xyArray[index + 1];
+                        
+                                rowCols[2].classList.add(xyArray[index + 2]);
+                                rowCols[2].textContent = xyArray[index + 2];
+                        
+                                rowCols[3].classList.add(xyArray[index + 3]);
+                                rowCols[3].textContent = xyArray[index + 3];
+                        
+                                rowCols[4].classList.add(xyArray[index + 4]);
+                                rowCols[4].textContent = xyArray[index + 4];
+                        
+                                tableBody.appendChild(tableRow);
+                            }
+                        
+                        
+                        
+                            //Add all the rows  to the table.
+                        
+                        }
                         </code>
                     </pre>
                 </div>
@@ -131,15 +183,18 @@ function displayNumbers(numbers) {
                     <p>The Code is structured in three function.</p>
                     <div>
                         <h5>function getValues()</h5>
-                    <p>This function retrieves the values from the HTML page. It then varifies that they are numbers and not arrays. Once confirmed, the numbers are then passed to the next function.</p>
+                        <p>This function retrieves the values from the HTML page. It then varifies that they are numbers
+                            and not arrays. Once confirmed, the numbers are then passed to the next function.</p>
                     </div>
                     <div>
                         <h5>function generateNumbers()</h5>
-                    <p>This function runs a loop and places the numbers in an array. The array is then used in the following function.</p>
+                        <p>This function runs a loop and places the numbers in an array. The array is then used in the
+                            following function.</p>
                     </div>
                     <div>
                         <h5>function displayNumbers()</h5>
-                    <p>This function inputs the array into a table which is printed on the HTML page. The function also bolds all of the even numbers.</p>
+                        <p>This function inputs the array into a table which is printed on the HTML page. The function
+                            also bolds all of the even numbers.</p>
                     </div>
                 </div>
             </div>
@@ -162,13 +217,16 @@ function displayNumbers(numbers) {
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                     <div class="row">
                         <div class="col social">
-                            <a href="https://www.linkedin.com/in/riley-macneill-8080b196/" target="_blank"><i class="fab fa-linkedin fab-2x"></i></a>
+                            <a href="https://www.linkedin.com/in/riley-macneill-8080b196/" target="_blank"><i
+                                    class="fab fa-linkedin fab-2x"></i></a>
                         </div>
                         <div class="col social">
-                            <a href="https://github.com/rileymacneill" target="_blank"><i class="fab fa-github fab-2x"></i></a>
+                            <a href="https://github.com/rileymacneill" target="_blank"><i
+                                    class="fab fa-github fab-2x"></i></a>
                         </div>
                         <div class="col social">
-                            <a href="https://twitter.com/riley_macneill" target="_blank"><i class="fab fa-twitter fab-2x"></i></a>
+                            <a href="https://twitter.com/riley_macneill" target="_blank"><i
+                                    class="fab fa-twitter fab-2x"></i></a>
                         </div>
                     </div>
                 </div>

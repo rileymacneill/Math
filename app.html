@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>THE APP: A Coding Project By Riley MacNeill</title>
+    <title>MATH: A Coding Project By Riley MacNeill</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,10 +13,6 @@
     <link href="/css/site.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="/img/favicon-32x32.png" <!-- Convert this to an external style sheet -->
-    <!--Black Ops One-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -25,7 +21,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand logoFont" href="#"><img src="/img/favicon-32x32.png" height="24" width="30"
-                    class="d-inline-block align-text-top">&nbsp;THE APP</a>
+                    class="d-inline-block align-text-top">&nbsp;MATH</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -57,26 +53,29 @@
         <div class="container mt-5">
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col col-lg-4 border-end border-2">
-                    <h1><span class="logoFont"> THE APP:</span><br>A Coding Project</h1>
+                    <h1><span class="logoFont">MATH:</span><br>A Coding Project</h1>
                     <h4 class="lead">Live life one loop at a time. A javascript coding exercise using loops. Write a
                         program that displays numbers from 1 to 100. Display the even numbers in</h4>
                     <h2 class="mt-5 border-bottom border-2">Instructions</h2>
-                    <p>Enter a starting value and an ending value. Press the button and the numbers will appear.</p>
+                    <p>When it counts you MATH. A javascript coding exercise using loops. Write a program that prints
+                        numbers from 1 to 100 and for multibles of '3' display <strong>"X"</strong> instead of the
+                        number and for multibles of '5' display <strong>"Y"</strong>. If a multible of both, display
+                        <strong>"XY"</strong>.</p>
                 </div>
                 <div class="col col-lg-8">
                     <div>
                         <h5>Enter Values</h5>
                         <form class="row gy-2 gx-3">
                             <div class="col">
-                                <input id="startValue" type="number" class="form-control" placeholder="Start Value"
-                                    value=0 aria-label="Start Value">
+                                <input id="firstValue" type="number" class="form-control" placeholder="First Value"
+                                    value=3 aria-label="First Value">
                             </div>
                             <div class="col">
-                                <input id="endValue" type="number" class="form-control" placeholder="End Value"
-                                value=100 aria-label="End Value">
+                                <input id="secondValue" type="number" class="form-control" placeholder="Second Value"
+                                    value=5 aria-label="End Value">
                             </div>
                             <div class="col-12 d-flex justify-content-start justify-content-lg-end">
-                                <button id="btnSubmit" type="button" class="btn btn-dark btn-lg">Go</button>
+                                <button id="submit" type="button" class="btn btn-dark btn-lg">Calculate</button>
                             </div>
                         </form>
                         <h2 class="mt-5 border-bottom border-2">Results</h2>
@@ -109,26 +108,40 @@
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                     <div class="row">
                         <div class="col social">
-                            <a href="https://www.linkedin.com/in/riley-macneill-8080b196/" target="_blank"><i class="fab fa-linkedin fab-2x"></i></a>
+                            <a href="https://www.linkedin.com/in/riley-macneill-8080b196/" target="_blank"><i
+                                    class="fab fa-linkedin fab-2x"></i></a>
                         </div>
                         <div class="col social">
-                            <a href="https://github.com/rileymacneill" target="_blank"><i class="fab fa-github fab-2x"></i></a>
+                            <a href="https://github.com/rileymacneill" target="_blank"><i
+                                    class="fab fa-github fab-2x"></i></a>
                         </div>
                         <div class="col social">
-                            <a href="https://twitter.com/riley_macneill" target="_blank"><i class="fab fa-twitter fab-2x"></i></a>
+                            <a href="https://twitter.com/riley_macneill" target="_blank"><i
+                                    class="fab fa-twitter fab-2x"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+    <!--JS TEmplate-->
+    <template id="xyTemplate">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        
+    </template>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
     <script src="/js/site.js"></script>
     <script>
-        document.getElementById("btnSubmit").addEventListener("click",getValues);
+        document.getElementById("submit").addEventListener("click", getValue);
     </script>
 </body>
 

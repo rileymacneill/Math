@@ -61,6 +61,19 @@ footer .social>a:hover {
     color: var(--secondary-color);
 }
 
+.X{
+    color: green;
+}
+
+.Y{
+    color: blue;
+}
+
+.XY{
+    color: red;
+    font-weight: bold;
+}
+
 code[class*="language-"],
     pre[class*="language-"] {
         white-space: pre-wrap;
@@ -77,7 +90,7 @@ code[class*="language-"],
 }
 
 .logoFont{
-    font-family: sans-serif;
+    font-family: open-sans;
     font-weight: 100;
 }
 
